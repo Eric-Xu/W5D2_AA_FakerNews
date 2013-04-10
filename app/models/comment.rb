@@ -1,7 +1,9 @@
 class Comment < ActiveRecord::Base
   attr_accessible :article_id, :author_id, :body, :parent_comment_id
 
-  belongs_to :article
+  validates :body, :author_id, :presence => true
+
+  belongs_to :article, :inverse_of => :comments
   belongs_to :user
 
   belongs_to :parent_comment, :class_name => "Comment"

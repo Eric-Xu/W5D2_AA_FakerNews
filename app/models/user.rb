@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  attr_accessible :karma, :remember_token, :username
+  attr_accessible :karma, :remember_token, :username, :email, :password, :about
 
-  has_many :articles
-  has_many :comments
+  validates :username, :email, :password, :presence => true
+
+  has_many :articles, :foreign_key => :author_id
+  has_many :comments, :foreign_key => :author_id
 end

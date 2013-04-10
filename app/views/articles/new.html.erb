@@ -1,0 +1,27 @@
+<h1>Create a New Article</h1>
+
+<%= form_for(@article) do |f| %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </p>
+
+  <h3>Leave new comment</h3>
+  <%= f.fields_for(:comments) do |comment_form| %>
+  <p>
+    <%= comment_form.label :body, 'Comment message' %>
+    <%= comment_form.text_area :body %>
+  </p>
+
+  <% end %>
+
+  <%= f.submit 'Submit' %>
+<% end %>

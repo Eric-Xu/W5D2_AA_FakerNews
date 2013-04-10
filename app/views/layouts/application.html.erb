@@ -7,8 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+<div class="page-header">
+  <h1>Faker News <small>Your source for news</small></h1>
+  <p><%= login_toggle_tag %><p>
+</div>
+<%= flash_alerts %>
+<div class = "container"><%= yield %></div>
 
 </body>
 </html>
