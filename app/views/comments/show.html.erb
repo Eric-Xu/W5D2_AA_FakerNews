@@ -1,0 +1,22 @@
+<% author = User.find(@comment.author_id) %>
+<% article = Article.find(@comment.article_id) %>
+
+<p class="lead well">
+  <span class="small-link">
+    <%= link_to author.username, user_path(author) %>
+    <%= time_ago_in_words(article.created_at)%> ago |
+    <%= link_to article.title, article_path(article) %>
+  </span>
+  <br>
+  <%= @comment.body %>
+</p>
+
+<ul class="nav nav-pills">
+  <li>
+    <%= link_to 'edit this comment', comment_path(@comment) %>
+  </li>
+  <li>
+    <%= link_to 'delete this comment', comment_path(@comment), :method => :delete %>
+  </li>
+</ul>
+

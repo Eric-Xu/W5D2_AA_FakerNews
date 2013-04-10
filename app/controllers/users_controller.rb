@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :require_same_user_login
+  skip_before_filter :require_same_user_login, :only => [:index, :show, :new, :create]
+  skip_before_filter :require_login, :except => [:destroy]
   def show
     @user = User.find(params[:id])
   end
@@ -42,5 +45,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_url
+  end
+
+  private
+
+  def require_same_user_login
+    @user = User.find(params[:id])
+    unless current_user == @user
+      flash[:error] = "You are not authorized to edit this resource"
+      redirect_to new_session_url
+    end
   end
 end

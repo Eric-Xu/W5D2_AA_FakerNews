@@ -1,13 +1,25 @@
-<h1>All the articles</h1>
+<h2>Articles</h2>
 
-<ul>
+<ol>
   <% @articles.each do |article| %>
-    <li><%= link_to article.title, article_path(article) %></li>
+    <% author = User.find(article.author_id) %>
+    <li>
+      <p class="lead well"><%= link_to article.title, article_path(article) %>
+        <span class="small-link">
+          <%= link_to article.url, url_with_protocol(article.url) %>
+          <br>
+          <%= article.karma %> points by <%= author.username %>
+          <%= time_ago_in_words(article.created_at)%> ago |
+          <%= link_to 'discuss', article_path(article)%>
+
+        </span>
+      </p>
+    </li>
   <% end %>
-</ul>
+</ol>
 
 <ul class="nav nav-pills">
-  <li class="active">
+  <li>
     <%= link_to 'create new article', new_article_path %>
   </li>
-</ul>
+</ol>

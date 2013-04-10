@@ -9,7 +9,8 @@
 <body>
 <div class="page-header">
   <h1>Faker News <small>Your source for news</small></h1>
-  <p><%= login_toggle_tag %><p>
+  <p class = "toggle-login"><%= login_toggle_tag %><p>
+  <%= render partial: "shared/nav" %>
 </div>
 <%= flash_alerts %>
 <div class = "container"><%= yield %></div>
